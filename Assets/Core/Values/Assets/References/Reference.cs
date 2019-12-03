@@ -8,13 +8,18 @@ using UnityEngine.Assertions;
 namespace Core.Values.Assets.References
 {
     [Serializable]
-    public class Reference<TValue, TProvider> : IValueProvider<TValue>
+    public abstract class ReferenceBase
+    {
+        [SerializeField] internal bool UseConstant = true;
+    }
+    
+    [Serializable]
+    public class Reference<TValue, TProvider> : ReferenceBase, IValueProvider<TValue>
         where TProvider : IValueProvider<TValue>
     {
         [SerializeField] private TValue _constant = default;
         [SerializeField] private TProvider _provider = default;
-        [SerializeField] internal bool UseConstant = true;
-        
+
         public TValue Value => UseConstant ? _constant : _provider.Value;
         
         public static implicit operator TValue([NotNull] Reference<TValue, TProvider> reference)
