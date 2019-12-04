@@ -39,5 +39,17 @@ namespace Core.Values.Assets.References
             _provider = provider;
             UseConstant = useConstant;
         }
+
+        internal TValue Constant
+        {
+            get => _constant;
+            set => _constant = value;
+        }
+        
+        internal TProvider Provider
+        {
+            get => _provider;
+            set => _provider = value;
+        }
     }
 }

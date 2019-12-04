@@ -7,6 +7,9 @@ namespace Framework.Core.Values.Assets.References.Concrete
     [Serializable]
     public class Reference_Int : Reference<int, Variable_Int>
     {
-        
+        public static implicit operator Reference_Int(int value)
+        {
+            return new Reference_Int {Constant = value};
+        }
     }
 }
