@@ -21,11 +21,11 @@ namespace Framework.Core.Objects.Bases
             _cache.Cache(component);
         }
 
-        public T FindComponent<T>() where T : IDependentObject => _cache.FindComponent<T>();
+        public T FindComponent<T>() => _cache.FindComponent<T>();
 
-        public bool TryFindComponent<T>(out T component) where T : IDependentObject => _cache.TryFindComponent(out component);
+        public bool TryFindComponent<T>(out T component) => _cache.TryFindComponent(out component);
 
-        public IEnumerable<T> FindComponents<T>() where T : IDependentObject => _cache.FindComponents<T>();
+        public IEnumerable<T> FindComponents<T>() => _cache.FindComponents<T>();
 
         public abstract void Destroy();
         

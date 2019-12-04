@@ -23,7 +23,7 @@ namespace Framework.Core.Objects.Bases
             CacheAs(component, component.GetType());
         }
 
-        private void CacheAs<T>([NotNull] IDependentObject component) where T : IDependentObject
+        private void CacheAs<T>([NotNull] IDependentObject component)
         {
             CacheAs(component, typeof(T));
         }
@@ -48,14 +48,14 @@ namespace Framework.Core.Objects.Bases
             return collection;
         }
 
-        public T FindComponent<T>() where T : IDependentObject
+        public T FindComponent<T>()
         {
             if (TryFindComponent<T>(out var component)) return component;
             
             throw new InvalidOperationException("Component not found.");
         }
 
-        public bool TryFindComponent<T>(out T component) where T : IDependentObject
+        public bool TryFindComponent<T>(out T component)
         {
             var type = typeof(T);
 
@@ -100,7 +100,7 @@ namespace Framework.Core.Objects.Bases
             return false;
         }
 
-        public IEnumerable<T> FindComponents<T>() where T : IDependentObject => this.OfType<T>();
+        public IEnumerable<T> FindComponents<T>() => this.OfType<T>();
 
         public IEnumerator<IDependentObject> GetEnumerator() => _allComponents.GetEnumerator();
 

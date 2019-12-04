@@ -25,17 +25,17 @@ namespace Framework.EditorTests.Core.Spawning.Pools
             throw new NotImplementedException();
         }
 
-        public T FindComponent<T>() where T : IDependentObject
+        public T FindComponent<T>()
         {
             throw new NotImplementedException();
         }
 
-        public bool TryFindComponent<T>(out T component) where T : IDependentObject
+        public bool TryFindComponent<T>(out T component)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> FindComponents<T>() where T : IDependentObject
+        public IEnumerable<T> FindComponents<T>()
         {
             throw new NotImplementedException();
         }

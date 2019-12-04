@@ -8,11 +8,11 @@ namespace Framework.Core.Objects
         void Cache([NotNull] IDependentObject component);
 
         [NotNull]
-        T FindComponent<T>() where T : IDependentObject;
+        T FindComponent<T>();
         
-        bool TryFindComponent<T>(out T component) where T : IDependentObject;
+        bool TryFindComponent<T>(out T component);
 
         [NotNull]
-        IEnumerable<T> FindComponents<T>() where T : IDependentObject;
+        IEnumerable<T> FindComponents<T>();
     }
 }
