@@ -1,0 +1,13 @@
+using System;
+using Core.Values.Assets.References;
+using Framework.Core.Values.Assets.Variables.Concrete;
+using UnityEngine;
+
+namespace Framework.Core.Values.Assets.References.Concrete
+{
+    [Serializable]
+    public class Reference_Vector3 : Reference<Vector3, Variable_Vector3>
+    {
+        
+    }
+}
