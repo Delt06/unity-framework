@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Core.Objects.Bases
 {
+    [DisallowMultipleComponent]
     public abstract class BaseComponent : MonoBehaviour, IBaseObject
     {
         [NotNull] private readonly IComponentCache _cache = new ComponentCache();

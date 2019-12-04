@@ -18,7 +18,7 @@ namespace Core.Events.Assets
             remove => _innerEvent.Raised -= value;
         }
 
-        internal const string BuiltInPath = "Event/Built-in/";
-        protected internal const string CustomPath = "Event/Custom/";
+        internal const string BuiltInPath = "Event/";
+        protected internal const string CustomPath = BuiltInPath + "Custom/";
     }
 }

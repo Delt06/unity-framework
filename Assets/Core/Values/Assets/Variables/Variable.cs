@@ -28,7 +28,7 @@ namespace Core.Values.Assets.Variables
             return clone;
         }
         
-        internal const string BuildInPath = "Variable/Built-in/";
-        protected internal const string CustomPath = "Variable/Custom/";
+        internal const string BuiltInPath = "Variable/";
+        protected internal const string CustomPath = BuiltInPath + "Custom/";
     }
 }

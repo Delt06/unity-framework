@@ -24,7 +24,7 @@ namespace Core.Spawning.Assets
 
         public event EventHandler<T> Spawned;
 
-        internal const string BuiltInPath = "Spawner/Built-in/";
-        protected internal string CustomPath = "Spawner/Custom/";
+        internal const string BuiltInPath = "Spawner/";
+        protected internal string CustomPath = BuiltInPath + "Custom/";
     }
 }
