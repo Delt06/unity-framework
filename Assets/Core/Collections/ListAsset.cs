@@ -6,44 +6,46 @@ using UnityEngine;
 
 namespace Core.Collections
 {
-    public class ListAsset<T> : ScriptableObject, IList<T>
+    public class ListAsset<T> : ListAssetBase, IList<T>
     {
-        [SerializeField] private List<T> _items = default;
+        [SerializeField] internal List<T> Items = default;
 
-        public IEnumerator<T> GetEnumerator() => _items.GetEnumerator();
+        public List<T>.Enumerator GetEnumerator() => Items.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) _items).GetEnumerator();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
 
-        public void Add(T item) => _items.Add(item);
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) Items).GetEnumerator();
 
-        public void Clear() => _items.Clear();
+        public void Add(T item) => Items.Add(item);
 
-        public bool Contains(T item) => _items.Contains(item);
+        public void Clear() => Items.Clear();
+
+        public bool Contains(T item) => Items.Contains(item);
 
         public void CopyTo([NotNull] T[] array, int arrayIndex)
         {
             if (array is null) throw new ArgumentNullException(nameof(array));
-            _items.CopyTo(array, arrayIndex);
+            Items.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(T item) => _items.Remove(item);
+        public bool Remove(T item) => Items.Remove(item);
 
-        public int Count => _items.Count;
+        public int Count => Items.Count;
 
-        bool ICollection<T>.IsReadOnly => ((ICollection<T>)_items).IsReadOnly;
+        bool ICollection<T>.IsReadOnly => ((ICollection<T>)Items).IsReadOnly;
 
-        public int IndexOf(T item) => _items.IndexOf(item);
+        public int IndexOf(T item) => Items.IndexOf(item);
 
         public void Insert(int index, T item)
         {
             if (index < 0 || index > Count) throw new ArgumentOutOfRangeException(nameof(index));
-            _items.Insert(index, item);
+            Items.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
             if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
-            _items.RemoveAt(index);
+            Items.RemoveAt(index);
         }
 
         public T this[int index]
@@ -51,16 +53,13 @@ namespace Core.Collections
             get
             {
                 if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
-                return _items[index];
+                return Items[index];
             }
             set
             {
                 if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
-                _items[index] = value;
+                Items[index] = value;
             }
         }
-        
-        internal const string BuiltInPath = CollectionsAssets.Path + "List/Built-in/";
-        internal const string CustomPath = CollectionsAssets.Path + "Array/Custom/";
     }
 }
