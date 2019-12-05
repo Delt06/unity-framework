@@ -27,6 +27,8 @@ namespace Framework.Core.Values.Assets.Variables
             clone.Value = Value;
             return clone;
         }
+
+        public override string ToString() => $"Variable<{typeof(T)}> {_value.ToString()}";
         
         internal const string BuiltInPath = "Variable/";
         protected internal const string CustomPath = BuiltInPath + "Custom/";

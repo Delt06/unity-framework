@@ -39,6 +39,8 @@ namespace Core.Values.Assets.References
             _provider = provider;
             UseConstant = useConstant;
         }
+        
+        public override string ToString() => $"Reference<{typeof(TValue)}> {Value.ToString()}";
 
         internal TValue Constant
         {
