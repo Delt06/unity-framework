@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Framework.Core.Events.Predefined.Events
 {
     [CreateAssetMenu(menuName = BuiltInPath + "String")]
-    public class GameEvent_String : GameEvent<string>
+    public sealed class GameEvent_String : GameEvent<string>
     {
         
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Framework.Core.Events.Predefined.Events
 {
     [CreateAssetMenu(menuName = BuiltInPath + "No Args")]
-    public class GameEvent_NoArgs : GameEvent<EventArgs>
+    public sealed class GameEvent_NoArgs : GameEvent<EventArgs>
     {
         
     }

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace Framework.Core.Events.Predefined.UnityEvents
 {
     [Serializable]
-    public class UnityEvent_String : UnityEvent<string>
+    public sealed class UnityEvent_String : UnityEvent<string>
     {
         
     }

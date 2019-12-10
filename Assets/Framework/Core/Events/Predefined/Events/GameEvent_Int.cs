@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Framework.Core.Events.Predefined.Events
 {
     [CreateAssetMenu(menuName = BuiltInPath + "Integer")]
-    public class GameEvent_Int : GameEvent<int>
+    public sealed class GameEvent_Int : GameEvent<int>
     {
         
     }
