@@ -53,7 +53,7 @@ namespace Framework.Core.Events.Components
             enabled = false;
         }
 
-        internal const string BuiltInPath = "Event Listeners/Listener_";
-        protected internal const string CustomPath = "Event Listeners/Custom/Listener_";
+        internal const string BuiltInPath = "Event Listeners/Listener ";
+        protected internal const string CustomPath = "Event Listeners/Custom/Listener ";
     }
 }
