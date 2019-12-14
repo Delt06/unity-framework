@@ -1,10 +1,10 @@
 {
-    "name": "EditorTests",
+    "name": "FrameworkEditorTests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Unity.Rider.Editor",
-        "CoreAssembly"
+        "Framework"
     ],
     "includePlatforms": [
         "Editor"

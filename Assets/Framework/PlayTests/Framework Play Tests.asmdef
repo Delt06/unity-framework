@@ -1,10 +1,10 @@
 {
-    "name": "PlayTests",
+    "name": "FrameworkPlayTests",
     "references": [
         "UnityEditor.TestRunner",
         "UnityEngine.TestRunner",
         "Unity.Rider.Editor",
-        "CoreAssembly"
+        "Framework"
     ],
     "includePlatforms": [],
     "excludePlatforms": [
