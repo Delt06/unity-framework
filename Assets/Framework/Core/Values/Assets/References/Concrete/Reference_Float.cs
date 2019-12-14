@@ -5,7 +5,7 @@ using Framework.Core.Values.Assets.Variables.Concrete;
 namespace Framework.Core.Values.Assets.References.Concrete
 {
     [Serializable]
-    public class Reference_Float : Reference<float, Variable_Float>
+    public sealed class Reference_Float : Reference<float, Variable_Float>
     {
         public static implicit operator Reference_Float(float value)
         {

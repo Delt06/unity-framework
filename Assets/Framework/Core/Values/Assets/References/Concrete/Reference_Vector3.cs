@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Framework.Core.Values.Assets.References.Concrete
 {
     [Serializable]
-    public class Reference_Vector3 : Reference<Vector3, Variable_Vector3>
+    public sealed class Reference_Vector3 : Reference<Vector3, Variable_Vector3>
     {
         public static implicit operator Reference_Vector3(Vector3 value)
         {

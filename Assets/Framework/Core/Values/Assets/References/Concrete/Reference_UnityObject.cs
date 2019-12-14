@@ -5,7 +5,7 @@ using Framework.Core.Values.Assets.Variables.Concrete;
 namespace Framework.Core.Values.Assets.References.Concrete
 {
     [Serializable]
-    public class Reference_UnityObject : Reference<UnityEngine.Object, Variable_UnityObject>
+    public sealed class Reference_UnityObject : Reference<UnityEngine.Object, Variable_UnityObject>
     {
     }
 }

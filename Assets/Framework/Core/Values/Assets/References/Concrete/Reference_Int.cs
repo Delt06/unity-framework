@@ -5,7 +5,7 @@ using Framework.Core.Values.Assets.Variables.Concrete;
 namespace Framework.Core.Values.Assets.References.Concrete
 {
     [Serializable]
-    public class Reference_Int : Reference<int, Variable_Int>
+    public sealed class Reference_Int : Reference<int, Variable_Int>
     {
         public static implicit operator Reference_Int(int value)
         {
