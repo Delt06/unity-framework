@@ -1,9 +1,10 @@
 using Framework.Core.Objects.Components;
 using UnityEngine;
 
-namespace Framework.Core.Physics
+namespace Framework.Core.Components.Cache
 {
-    public class TransformComponent : DependentComponent, IHasTransform
+    [AddComponentMenu(BuiltInPath + nameof(UnityEngine.Transform))]
+    public class TransformCache : CacheBase, IHasTransform
     {
         [SerializeField] private Transform _transform = default;
 

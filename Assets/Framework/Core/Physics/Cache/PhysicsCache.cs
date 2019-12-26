@@ -1,9 +1,10 @@
+using Framework.Core.Components.Cache;
 using Framework.Core.Objects.Components;
 using UnityEngine;
 
-namespace Framework.Core.Physics
+namespace Framework.Core.Physics.Cache
 {
-    public class PhysicsComponent<TRigidbody> : DependentComponent, IHasPhysics<TRigidbody>
+    public abstract class PhysicsCache<TRigidbody> : CacheBase, IHasPhysics<TRigidbody>
         where TRigidbody : Component
     {
         [SerializeField] private TRigidbody _rigidbody = default;
