@@ -9,7 +9,7 @@ namespace Framework.EditorTests.Core.Spawning.Pools
 {
     public class MockPoolBaseObject : IPoolBase
     {
-        public IEnumerator<IDependentObject> GetEnumerator()
+        public IEnumerator<object> GetEnumerator()
         {
             throw new NotImplementedException();
         }
@@ -20,17 +20,22 @@ namespace Framework.EditorTests.Core.Spawning.Pools
         }
 
         public int Count { get; }
-        public void Cache(IDependentObject component)
+        public void CacheDependent(IDependentObject obj)
         {
             throw new NotImplementedException();
         }
 
-        public T FindComponent<T>()
+        public void Cache(object component)
         {
             throw new NotImplementedException();
         }
 
-        public bool TryFindComponent<T>(out T component)
+        public T Find<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryFind<T>(out T obj)
         {
             throw new NotImplementedException();
         }

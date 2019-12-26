@@ -24,9 +24,9 @@ namespace Framework.EditorTests.Core.Objects.Bases
         public void Cache_One_CanBeFound()
         {
             var cachedComponent = new DependentComponentAlone();
-            _cache.Cache(cachedComponent);
+            _cache.CacheDependent(cachedComponent);
             
-            Assert.IsTrue(_cache.TryFindComponent<DependentComponentAlone>(out var retrievedComponent));
+            Assert.IsTrue(_cache.TryFind<DependentComponentAlone>(out var retrievedComponent));
             Assert.AreEqual(cachedComponent, retrievedComponent);
         }
 
@@ -34,10 +34,10 @@ namespace Framework.EditorTests.Core.Objects.Bases
         public void Cache_Two_CanBeFound()
         {
             var cachedComponent = new DependentComponentAlone();
-            _cache.Cache(cachedComponent);
-            _cache.Cache(new DependentComponentParent());
+            _cache.CacheDependent(cachedComponent);
+            _cache.CacheDependent(new DependentComponentParent());
             
-            Assert.IsTrue(_cache.TryFindComponent<DependentComponentAlone>(out var retrievedComponent));
+            Assert.IsTrue(_cache.TryFind<DependentComponentAlone>(out var retrievedComponent));
             Assert.AreEqual(cachedComponent, retrievedComponent);
         }
         
@@ -46,17 +46,17 @@ namespace Framework.EditorTests.Core.Objects.Bases
         {
             var cachedComponent = new DependentComponentAlone();
             
-            _cache.Cache(new DependentComponentParent());
-            _cache.Cache(cachedComponent);
+            _cache.CacheDependent(new DependentComponentParent());
+            _cache.CacheDependent(cachedComponent);
 
-            Assert.IsTrue(_cache.TryFindComponent<DependentComponentAlone>(out var retrievedComponent));
+            Assert.IsTrue(_cache.TryFind<DependentComponentAlone>(out var retrievedComponent));
             Assert.AreEqual(cachedComponent, retrievedComponent);
         }
         
         [Test]
         public void Cache_Zero_CantBeFound()
         {
-            Assert.IsFalse(_cache.TryFindComponent<DependentComponentAlone>(out _));
+            Assert.IsFalse(_cache.TryFind<DependentComponentAlone>(out _));
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Framework.EditorTests.Core.Objects.Bases
                 
                 for (var duplicateIndex = 0; duplicateIndex < numberOfDuplicates; duplicateIndex++)
                 {
-                    _cache.Cache(distinctObject);
+                    _cache.CacheDependent(distinctObject);
                 }
             }
             
@@ -83,9 +83,9 @@ namespace Framework.EditorTests.Core.Objects.Bases
         {
             var cachedComponent = new DependentComponentChild();
             
-            _cache.Cache(cachedComponent);
+            _cache.CacheDependent(cachedComponent);
             
-            Assert.IsTrue(_cache.TryFindComponent(out DependentComponentChild foundComponent));
+            Assert.IsTrue(_cache.TryFind(out DependentComponentChild foundComponent));
             Assert.AreEqual(cachedComponent, foundComponent);
         }
 
@@ -94,9 +94,9 @@ namespace Framework.EditorTests.Core.Objects.Bases
         {
             var cachedComponent = new DependentComponentChild();
             
-            _cache.Cache(cachedComponent);
+            _cache.CacheDependent(cachedComponent);
             
-            Assert.IsTrue(_cache.TryFindComponent(out DependentComponentParent foundComponent));
+            Assert.IsTrue(_cache.TryFind(out DependentComponentParent foundComponent));
             Assert.AreEqual(cachedComponent, foundComponent);
         }
 
@@ -105,9 +105,9 @@ namespace Framework.EditorTests.Core.Objects.Bases
         {
             var cachedComponent = new DependentComponentParent();
             
-            _cache.Cache(cachedComponent);
+            _cache.CacheDependent(cachedComponent);
             
-            Assert.IsFalse(_cache.TryFindComponent<DependentComponentChild>(out _));
+            Assert.IsFalse(_cache.TryFind<DependentComponentChild>(out _));
         }
         
         [Test]
@@ -115,9 +115,9 @@ namespace Framework.EditorTests.Core.Objects.Bases
         {
             var cachedComponent = new DependentComponentAlone();
             
-            _cache.Cache(cachedComponent);
+            _cache.CacheDependent(cachedComponent);
             
-            Assert.IsFalse(_cache.TryFindComponent<DependentComponentChild>(out _));
+            Assert.IsFalse(_cache.TryFind<DependentComponentChild>(out _));
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace Framework.EditorTests.Core.Objects.Bases
             
             foreach (var cachedComponent in cachedComponents)
             {
-                _cache.Cache(cachedComponent);
+                _cache.CacheDependent(cachedComponent);
             }
             
             var cachedComponentsTyped = cachedComponents.OfType<DependentComponentParent>().ToArray();
@@ -168,7 +168,7 @@ namespace Framework.EditorTests.Core.Objects.Bases
             
             foreach (var cachedComponent in cachedComponents)
             {
-                _cache.Cache(cachedComponent);
+                _cache.CacheDependent(cachedComponent);
             }
 
             var allEnumeratedComponents = _cache.ToArray();

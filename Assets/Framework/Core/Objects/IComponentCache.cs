@@ -3,14 +3,15 @@ using JetBrains.Annotations;
 
 namespace Framework.Core.Objects
 {
-    public interface IComponentCache : IReadOnlyCollection<IDependentObject>
+    public interface IComponentCache : IReadOnlyCollection<object>
     {
-        void Cache([NotNull] IDependentObject component);
+        void CacheDependent([NotNull] IDependentObject obj);
+        void Cache([NotNull] object obj);
 
         [NotNull]
-        T FindComponent<T>();
+        T Find<T>();
         
-        bool TryFindComponent<T>(out T component);
+        bool TryFind<T>(out T obj);
 
         [NotNull]
         IEnumerable<T> FindComponents<T>();

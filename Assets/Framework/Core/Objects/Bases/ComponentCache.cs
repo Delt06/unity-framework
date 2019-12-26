@@ -9,100 +9,107 @@ namespace Framework.Core.Objects.Bases
     public sealed class ComponentCache : IComponentCache
     {
         [NotNull]
-        private readonly ICollection<IDependentObject> _allComponents = new HashSet<IDependentObject>();
+        private readonly ICollection<object> _allCached = new HashSet<object>();
         
         [NotNull]
-        private readonly IDictionary<Type, ICollection<IDependentObject>> _typedComponentCollections = new Dictionary<Type, ICollection<IDependentObject>>();
+        private readonly IDictionary<Type, ICollection<object>> _typedComponentCollections = new Dictionary<Type, ICollection<object>>();
 
-        public int Count => _allComponents.Count;
+        public int Count => _allCached.Count;
 
-        public void Cache(IDependentObject component)
+        public void CacheDependent(IDependentObject component)
         {
             if (component is null) throw new ArgumentNullException(nameof(component));
             
             CacheAs(component, component.GetType());
         }
 
-        private void CacheAs<T>([NotNull] IDependentObject component)
+        public void Cache(object obj)
         {
-            CacheAs(component, typeof(T));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            
+            CacheAs(obj, obj.GetType());
         }
 
-        private void CacheAs([NotNull] IDependentObject component, [NotNull] Type type)
+        private void CacheAs<T>([NotNull] object obj)
         {
-            _allComponents.Add(component);
+            CacheAs(obj, typeof(T));
+        }
+
+        private void CacheAs([NotNull] object obj, [NotNull] Type type)
+        {
+            _allCached.Add(obj);
             
             var collection = GetOrCreateCollectionFor(type);
-            collection.Add(component);
+            collection.Add(obj);
         }
 
         [NotNull]
-        private ICollection<IDependentObject> GetOrCreateCollectionFor([NotNull] Type type)
+        private ICollection<object> GetOrCreateCollectionFor([NotNull] Type type)
         {
             if (!_typedComponentCollections.TryGetValue(type, out var collection))
             {
-                collection = new HashSet<IDependentObject>();
+                collection = new HashSet<object>();
                 _typedComponentCollections[type] = collection;
             }
 
             return collection;
         }
 
-        public T FindComponent<T>()
+        public T Find<T>()
         {
-            if (TryFindComponent<T>(out var component)) return component;
+            if (TryFind<T>(out var component)) return component;
             
             throw new InvalidOperationException("Component not found.");
         }
 
-        public bool TryFindComponent<T>(out T component)
+        public bool TryFind<T>(out T obj)
         {
             var type = typeof(T);
 
-            if (TryFindComponentDirectlyAs(type, out var foundComponent))
+            if (TryFindDirectlyAs(type, out var foundComponent))
             {
-                component = (T) foundComponent;
+                obj = (T) foundComponent;
                 return true;
             }
 
-            if (TryFindComponentIndirectlyAs(type, out foundComponent))
+            if (TryFindIndirectlyAs(type, out foundComponent))
             {
-                component = (T) foundComponent;
+                obj = (T) foundComponent;
                 CacheAs<T>(foundComponent);
                 return true;
             }
 
-            component = default;
+            obj = default;
             return false;
         }
         
-        private bool TryFindComponentDirectlyAs([NotNull] Type searchedType, out IDependentObject component)
+        private bool TryFindDirectlyAs([NotNull] Type searchedType, out object obj)
         {
             var collection = GetOrCreateCollectionFor(searchedType);
-            component = collection.FirstOrDefault();
+            obj = collection.FirstOrDefault();
 
-            return component != null;
+            return obj != null;
         }
 
-        private bool TryFindComponentIndirectlyAs([NotNull] Type searchedType, out IDependentObject component)
+        private bool TryFindIndirectlyAs([NotNull] Type searchedType, out object obj)
         {
-            foreach (var currentComponent in _allComponents)
+            foreach (var currentComponent in _allCached)
             {
                 var typeOfCurrentComponent = currentComponent.GetType();
 
                 if (!searchedType.IsAssignableFrom(typeOfCurrentComponent)) continue;
                 
-                component = currentComponent;
+                obj = currentComponent;
                 return true;
             }
 
-            component = null;
+            obj = null;
             return false;
         }
 
         public IEnumerable<T> FindComponents<T>() => this.OfType<T>();
 
-        public IEnumerator<IDependentObject> GetEnumerator() => _allComponents.GetEnumerator();
+        public IEnumerator<object> GetEnumerator() => _allCached.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

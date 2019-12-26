@@ -25,7 +25,7 @@ namespace Framework.Core.Objects.Components
             Base = baseObject ?? throw new ArgumentNullException(nameof(baseObject));
             if (_cached)
             {
-                Base.Cache(this);
+                Base.CacheDependent(this);
             }
 
             OnInitialized();

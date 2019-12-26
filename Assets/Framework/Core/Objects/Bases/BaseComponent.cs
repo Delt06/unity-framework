@@ -15,15 +15,21 @@ namespace Framework.Core.Objects.Bases
 
         public int Count => _cache.Count;
 
-        public void Cache(IDependentObject component)
+        public void CacheDependent(IDependentObject obj)
         {
-            if (component is null) throw new ArgumentNullException(nameof(component));
-            _cache.Cache(component);
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            _cache.CacheDependent(obj);
         }
 
-        public T FindComponent<T>() => _cache.FindComponent<T>();
+        public void Cache(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            _cache.Cache(obj);
+        }
 
-        public bool TryFindComponent<T>(out T component) => _cache.TryFindComponent(out component);
+        public T Find<T>() => _cache.Find<T>();
+
+        public bool TryFind<T>(out T obj) => _cache.TryFind(out obj);
 
         public IEnumerable<T> FindComponents<T>() => _cache.FindComponents<T>();
 
@@ -71,7 +77,7 @@ namespace Framework.Core.Objects.Bases
 
         protected virtual void OnAfterInitializeComponents() {}
         
-        public IEnumerator<IDependentObject> GetEnumerator() => _cache.GetEnumerator();
+        public IEnumerator<object> GetEnumerator() => _cache.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         
