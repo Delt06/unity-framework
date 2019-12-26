@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Framework.Core.Graphics.Cache
+namespace Framework.Core.Cache
 {
     [AddComponentMenu(BuiltInPath + nameof(SpriteRenderer))]
     public class SpriteRendererCache : RendererCache<SpriteRenderer>

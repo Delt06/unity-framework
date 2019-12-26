@@ -1,7 +1,7 @@
 using Framework.Core.Objects.Components;
 using UnityEngine;
 
-namespace Framework.Core.Components.Cache
+namespace Framework.Core.Cache
 {
     [AddComponentMenu(BuiltInPath + nameof(UnityEngine.Transform))]
     public class TransformCache : CacheBase, IHasTransform

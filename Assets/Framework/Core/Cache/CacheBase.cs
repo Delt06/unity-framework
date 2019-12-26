@@ -1,6 +1,6 @@
 using Framework.Core.Objects.Components;
 
-namespace Framework.Core.Components.Cache
+namespace Framework.Core.Cache
 {
     public abstract class CacheBase : DependentComponent
     {

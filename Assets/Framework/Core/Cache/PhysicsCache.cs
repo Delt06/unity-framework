@@ -1,8 +1,8 @@
-using Framework.Core.Components.Cache;
 using Framework.Core.Objects.Components;
+using Framework.Core.Physics;
 using UnityEngine;
 
-namespace Framework.Core.Physics.Cache
+namespace Framework.Core.Cache
 {
     public abstract class PhysicsCache<TRigidbody> : CacheBase, IHasPhysics<TRigidbody>
         where TRigidbody : Component

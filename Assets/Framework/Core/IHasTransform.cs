@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Framework.Core.Components
+namespace Framework.Core
 {
     public interface IHasTransform
     {
