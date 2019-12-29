@@ -31,7 +31,7 @@ namespace Framework.Core.Objects.Bases
 
         public bool TryFind<T>(out T obj) => _cache.TryFind(out obj);
 
-        public IEnumerable<T> FindComponents<T>() => _cache.FindComponents<T>();
+        public IEnumerable<T> FindMany<T>() => _cache.FindMany<T>();
 
         public abstract void Destroy();
         

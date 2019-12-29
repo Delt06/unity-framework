@@ -14,6 +14,6 @@ namespace Framework.Core.Objects
         bool TryFind<T>(out T obj);
 
         [NotNull]
-        IEnumerable<T> FindComponents<T>();
+        IEnumerable<T> FindMany<T>();
     }
 }

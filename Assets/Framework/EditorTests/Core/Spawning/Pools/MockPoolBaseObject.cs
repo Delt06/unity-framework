@@ -40,7 +40,7 @@ namespace Framework.EditorTests.Core.Spawning.Pools
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> FindComponents<T>()
+        public IEnumerable<T> FindMany<T>()
         {
             throw new NotImplementedException();
         }

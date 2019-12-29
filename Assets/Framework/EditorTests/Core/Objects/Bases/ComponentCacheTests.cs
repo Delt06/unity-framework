@@ -132,7 +132,7 @@ namespace Framework.EditorTests.Core.Objects.Bases
             }
             
             var cachedComponentsTyped = cachedComponents.OfType<DependentComponentParent>().ToArray();
-            var retrievedComponents = _cache.FindComponents<DependentComponentParent>().ToArray();
+            var retrievedComponents = _cache.FindMany<DependentComponentParent>().ToArray();
 
             Assert.IsTrue(CollectionsAreDeepEqual(cachedComponentsTyped, retrievedComponents));
         }
@@ -172,7 +172,7 @@ namespace Framework.EditorTests.Core.Objects.Bases
             }
 
             var allEnumeratedComponents = _cache.ToArray();
-            var retrievedComponents = _cache.FindComponents<IDependentObject>().ToArray();
+            var retrievedComponents = _cache.FindMany<IDependentObject>().ToArray();
 
             Assert.IsTrue(CollectionsAreDeepEqual(allEnumeratedComponents, retrievedComponents));
         }

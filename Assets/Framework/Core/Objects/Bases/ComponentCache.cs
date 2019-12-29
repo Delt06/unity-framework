@@ -107,7 +107,7 @@ namespace Framework.Core.Objects.Bases
             return false;
         }
 
-        public IEnumerable<T> FindComponents<T>() => this.OfType<T>();
+        public IEnumerable<T> FindMany<T>() => this.OfType<T>();
 
         public IEnumerator<object> GetEnumerator() => _allCached.GetEnumerator();
 
