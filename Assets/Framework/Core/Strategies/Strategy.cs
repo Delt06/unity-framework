@@ -9,10 +9,10 @@ namespace Framework.Core.Strategies
         public static IStrategy<T> FromAction<T>([NotNull] Action<T> action)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
-            
+
             return new ActionStrategy<T>(action);
         }
-        
+
         private class ActionStrategy<T> : IStrategy<T>
         {
             [NotNull] private readonly Action<T> _action;

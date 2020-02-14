@@ -28,22 +28,22 @@ namespace Framework.EditorTests.Core.Spawning.Pools
             Assert.Throws<ArgumentOutOfRangeException>(() =>
                 new BaseObjectPool(invalidSize, () => new MockPoolBaseObject()));
         }
-        
+
         [Test]
         [TestCase(1)]
         [TestCase(10)]
         public void Ctor_ValidSize_NoExceptions(int validSize)
-        { 
+        {
             new BaseObjectPool(validSize, () => new MockPoolBaseObject());
         }
-        
+
         [Test]
         public void Ctor_NullCreationProcedure_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() =>
                 new BaseObjectPool(1, null));
         }
-        
+
         [Test]
         public void Ctor_NotNullCreationProcedure_NoExceptions()
         {
@@ -64,10 +64,10 @@ namespace Framework.EditorTests.Core.Spawning.Pools
 
             var spawnedCount = _pool.Size / 2;
             var objects = SpawnNObjects(spawnedCount).Distinct().ToArray();
-            
+
             Assert.AreEqual(spawnedCount, objects.Length);
         }
-        
+
         [Test]
         public void Spawn_EqualToSize_AllDistinct()
         {
@@ -75,10 +75,10 @@ namespace Framework.EditorTests.Core.Spawning.Pools
 
             var spawnedCount = _pool.Size;
             var objects = SpawnNObjects(spawnedCount).Distinct().ToArray();
-            
+
             Assert.AreEqual(spawnedCount, objects.Length);
         }
-        
+
         [Test]
         public void Spawn_GreaterThanSize_NotAllDistinct()
         {
@@ -86,7 +86,7 @@ namespace Framework.EditorTests.Core.Spawning.Pools
 
             var spawnedCount = _pool.Size * 2;
             var objects = SpawnNObjects(spawnedCount).Distinct().ToArray();
-            
+
             Assert.AreEqual(_pool.Size, objects.Length);
         }
 

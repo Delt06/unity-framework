@@ -7,7 +7,7 @@ namespace Framework.Core.Objects
     {
         [NotNull]
         string Name { get; }
-        
+
         void Destroy();
 
         event EventHandler Destroyed;

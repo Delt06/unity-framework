@@ -10,7 +10,7 @@ namespace Framework.Core.Objects.Bases
     {
         [NotNull]
         private readonly ICollection<object> _allCached = new HashSet<object>();
-        
+
         [NotNull]
         private readonly IDictionary<Type, ICollection<object>> _typedComponentCollections = new Dictionary<Type, ICollection<object>>();
 
@@ -19,14 +19,14 @@ namespace Framework.Core.Objects.Bases
         public void CacheDependent(IDependentObject component)
         {
             if (component is null) throw new ArgumentNullException(nameof(component));
-            
+
             CacheAs(component, component.GetType());
         }
 
         public void Cache(object obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            
+
             CacheAs(obj, obj.GetType());
         }
 
@@ -38,7 +38,7 @@ namespace Framework.Core.Objects.Bases
         private void CacheAs([NotNull] object obj, [NotNull] Type type)
         {
             _allCached.Add(obj);
-            
+
             var collection = GetOrCreateCollectionFor(type);
             collection.Add(obj);
         }
@@ -58,7 +58,7 @@ namespace Framework.Core.Objects.Bases
         public T Find<T>()
         {
             if (TryFind<T>(out var component)) return component;
-            
+
             throw new InvalidOperationException("Component not found.");
         }
 
@@ -82,7 +82,7 @@ namespace Framework.Core.Objects.Bases
             obj = default;
             return false;
         }
-        
+
         private bool TryFindDirectlyAs([NotNull] Type searchedType, out object obj)
         {
             var collection = GetOrCreateCollectionFor(searchedType);
@@ -98,7 +98,7 @@ namespace Framework.Core.Objects.Bases
                 var typeOfCurrentComponent = currentComponent.GetType();
 
                 if (!searchedType.IsAssignableFrom(typeOfCurrentComponent)) continue;
-                
+
                 obj = currentComponent;
                 return true;
             }

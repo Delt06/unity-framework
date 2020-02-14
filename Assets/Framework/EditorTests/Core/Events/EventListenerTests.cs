@@ -18,10 +18,10 @@ namespace Framework.EditorTests.Core.Events
         public void SetUp()
         {
             _event = new RaiseableEvent<EventArgs>();
-            
+
             CallbackInvoked = false;
             _callback = i => CallbackInvoked = true;
-            
+
             _listener = new EventListener<EventArgs>(_callback, _event);
         }
 
@@ -30,13 +30,13 @@ namespace Framework.EditorTests.Core.Events
         {
             Assert.Throws<ArgumentNullException>(() => new EventListener<EventArgs>(_callback, null));
         }
-        
+
         [Test]
         public void Ctor_NullCallback_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new EventListener<EventArgs>(null, _event));
         }
-        
+
         [Test]
         public void Ctor_NotNullArguments_DoesNotThrowExceptions()
         {
@@ -49,20 +49,20 @@ namespace Framework.EditorTests.Core.Events
             _listener.Enable();
 
             _event.Raise(EventArgs.Empty);
-            
+
             Assert.That(CallbackInvoked);
         }
-        
+
         [Test]
         public void Raise_Disable_CallbackNotInvoked()
         {
             _listener.Disable();
 
             _event.Raise(EventArgs.Empty);
-            
+
             Assert.IsFalse(CallbackInvoked);
         }
-        
+
         [Test]
         public void Raise_EnableAfterDisable_CallbackInvoked()
         {
@@ -70,10 +70,10 @@ namespace Framework.EditorTests.Core.Events
             _listener.Enable();
 
             _event.Raise(EventArgs.Empty);
-            
+
             Assert.That(CallbackInvoked);
         }
-        
+
         [Test]
         public void Raise_DisableAfterEnable_CallbackNotInvoked()
         {
@@ -81,7 +81,7 @@ namespace Framework.EditorTests.Core.Events
             _listener.Disable();
 
             _event.Raise(EventArgs.Empty);
-            
+
             Assert.IsFalse(CallbackInvoked);
         }
     }

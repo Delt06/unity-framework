@@ -15,16 +15,16 @@ namespace Framework.EditorTests.Core.Events
         {
             _event = new RaiseableEvent<int>();
         }
-        
-        
+
+
         [Test]
         public void Raise_AfterSubscription_CallbackIsInvoked()
         {
             var invoked = false;
-            
+
             _event.Raised += i => invoked = true;
             _event.Raise(0);
-            
+
             Assert.That(invoked);
         }
 
@@ -33,10 +33,10 @@ namespace Framework.EditorTests.Core.Events
         public void Raise_AfterSubscription_ProperArgumentIsPassed(int passedArgument)
         {
             int? receivedArgument = null;
-            
+
             _event.Raised += i => receivedArgument = i;
             _event.Raise(passedArgument);
-            
+
             Assert.AreEqual(passedArgument, receivedArgument);
         }
 
@@ -62,14 +62,14 @@ namespace Framework.EditorTests.Core.Events
         {
             var invoked = false;
             void Callback(int i) => invoked = true;
-            
+
             _event.Raised += Callback;
             _event.Raised -= Callback;
             _event.Raise(0);
-            
+
             Assert.IsFalse(invoked);
         }
-        
+
         [Test]
         public void Raise_TwoSubscribeAndOneUnsubscribe_RemainingInvoked()
         {
@@ -77,16 +77,16 @@ namespace Framework.EditorTests.Core.Events
             var invoked2 = false;
             void Callback1(int i) => invoked1 = true;
             void Callback2(int i) => invoked2 = true;
-            
+
             _event.Raised += Callback1;
             _event.Raised += Callback2;
             _event.Raised -= Callback1;
             _event.Raise(0);
-            
+
             Assert.IsFalse(invoked1);
             Assert.IsTrue(invoked2);
         }
-        
+
         [Test]
         public void Raise_UnsubscribeInsideCallback_UnsubscribedNotInvoked()
         {
@@ -102,7 +102,7 @@ namespace Framework.EditorTests.Core.Events
             _event.Raised += Callback1;
             _event.Raised += Callback2;
             _event.Raise(0);
-            
+
             Assert.IsFalse(invoked1);
             Assert.IsTrue(invoked2);
         }

@@ -8,7 +8,7 @@ namespace Framework.Core.Spawning.Pools
     {
         [SerializeField] private PoolBaseComponent _prefab = default;
         [SerializeField] private int _size = 50;
-        
+
         private IPool<IBaseObject> _innerPool;
 
         private void Awake()
@@ -24,7 +24,7 @@ namespace Framework.Core.Spawning.Pools
         public void Initialize()
         {
             if (Initialized) return;
-            
+
             _innerPool = new BaseObjectPool(Size, () => Instantiate(_prefab, transform));
             _innerPool.Initialize();
         }

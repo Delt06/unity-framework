@@ -8,7 +8,7 @@ namespace Framework.Core.Events.Implementation
     {
         [NotNull]
         private readonly IList<Action<T>> _callbacks = new List<Action<T>>();
-        
+
         public void Raise(T args)
         {
             for (var i = _callbacks.Count - 1; i >= 0; i--)
@@ -35,7 +35,7 @@ namespace Framework.Core.Events.Implementation
             {
                 var callback = _callbacks[i];
                 if (!Equals(callback, removedCallback)) continue;
-                
+
                 _callbacks.RemoveAt(i);
                 return;
             }

@@ -8,7 +8,7 @@ namespace Framework.Core.Values.Assets.Variables
     public class Variable<T> : ScriptableObject, IValueManager<T>, ICloneableAs<Variable<T>>
     {
         [SerializeField] private T _value = default;
-        
+
         public T Value
         {
             get => _value;
@@ -29,7 +29,7 @@ namespace Framework.Core.Values.Assets.Variables
         }
 
         public override string ToString() => $"Variable<{typeof(T)}> {_value.ToString()}";
-        
+
         internal const string BuiltInPath = "Variable/";
         protected internal const string CustomPath = BuiltInPath + "Custom/";
     }

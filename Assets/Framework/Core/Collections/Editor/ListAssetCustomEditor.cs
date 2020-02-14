@@ -5,9 +5,9 @@ using UnityEditor;
 namespace Framework.Core.Collections.Editor
 {
     [CustomEditor(typeof(ListAssetBase), true)]
-    internal sealed class ListAssetCustomEditor : ReorderableListCustomEditor 
+    internal sealed class ListAssetCustomEditor : ReorderableListCustomEditor
     {
-        
+
     }
 }
 

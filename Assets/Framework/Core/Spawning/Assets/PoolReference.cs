@@ -15,10 +15,10 @@ namespace Framework.Core.Spawning.Assets
         public PoolComponent Pool
         {
             get => _innerPool != null ? _innerPool : throw NewPoolNotSetException();
-            set => _innerPool = value != null ? 
+            set => _innerPool = value != null ?
                 value : throw new ArgumentNullException(nameof(value), "Inner pool is cannot be null.");
         }
-        
+
         protected sealed override IBaseObject SpawnObject()
         {
             if (_innerPool == null) throw NewPoolNotSetException();

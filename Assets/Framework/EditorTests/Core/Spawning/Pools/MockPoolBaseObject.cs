@@ -48,7 +48,7 @@ namespace Framework.EditorTests.Core.Spawning.Pools
         public GameObject GameObject { get; }
         public Transform Transform { get; }
         public string Name { get; }
-        
+
         public void Destroy()
         {
             Destroyed?.Invoke(this, EventArgs.Empty);

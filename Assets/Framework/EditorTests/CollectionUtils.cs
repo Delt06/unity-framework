@@ -22,12 +22,12 @@ namespace Framework.EditorTests
 
         private static bool NumberIsTheSame<T>(
             [NotNull] IEnumerable<T> first,
-            [NotNull] IEnumerable<T> second, 
+            [NotNull] IEnumerable<T> second,
             T item)
         {
             if (first is null) throw new ArgumentNullException(nameof(first));
             if (second is null) throw new ArgumentNullException(nameof(second));
-            
+
             var firstNumber = first.Count(i => Equals(i, item));
             var secondNumber = second.Count(i => Equals(i, item));
 

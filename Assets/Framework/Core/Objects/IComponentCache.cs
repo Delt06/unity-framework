@@ -10,7 +10,7 @@ namespace Framework.Core.Objects
 
         [NotNull]
         T Find<T>();
-        
+
         bool TryFind<T>(out T obj);
 
         [NotNull]

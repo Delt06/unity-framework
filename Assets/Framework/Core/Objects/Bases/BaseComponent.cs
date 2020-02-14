@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Framework.Core.Objects.Bases
 {
     [DisallowMultipleComponent]
     public abstract class BaseComponent : MonoBehaviour, IBaseObject
     {
+        [SerializeField] private UnityEvent _onDestroyed = default;
+
         [NotNull] private readonly IComponentCache _cache = new ComponentCache();
-        
+
         public string Name => name;
 
         public int Count => _cache.Count;
@@ -34,11 +37,12 @@ namespace Framework.Core.Objects.Bases
         public IEnumerable<T> FindMany<T>() => _cache.FindMany<T>();
 
         public abstract void Destroy();
-        
+
         public event EventHandler Destroyed;
-        
+
         protected virtual void OnDestroyed()
         {
+            _onDestroyed.Invoke();
             Destroyed?.Invoke(this, EventArgs.Empty);
         }
 
@@ -46,7 +50,7 @@ namespace Framework.Core.Objects.Bases
         {
             InitializeIfWasNot();
         }
-        
+
         protected bool Initialized { get; private set; }
 
         protected void InitializeIfWasNot()
@@ -76,11 +80,11 @@ namespace Framework.Core.Objects.Bases
         protected virtual IEnumerable<IDependentObject> GetAllComponents() => GetComponentsInChildren<IDependentObject>();
 
         protected virtual void OnAfterInitializeComponents() {}
-        
+
         public IEnumerator<object> GetEnumerator() => _cache.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        
+
         public GameObject GameObject { get; private set; }
         public Transform Transform { get; private set; }
     }

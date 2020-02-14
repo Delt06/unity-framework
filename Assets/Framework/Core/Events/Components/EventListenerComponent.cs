@@ -29,7 +29,7 @@ namespace Framework.Core.Events.Components
             }
 
             _innerListener = new EventListener<TArgs>(
-                args => _callback.Invoke(args), 
+                args => _callback.Invoke(args),
                 _gameEvent);
         }
 

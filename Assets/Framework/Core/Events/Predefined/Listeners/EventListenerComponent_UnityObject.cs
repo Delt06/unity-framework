@@ -9,6 +9,6 @@ namespace Framework.Core.Events.Predefined.Listeners
     public class EventListenerComponent_UnityObject : EventListenerComponent
         <Object, GameEvent_UnityObject, UnityEvent_UnityObject>
     {
-        
+
     }
 }

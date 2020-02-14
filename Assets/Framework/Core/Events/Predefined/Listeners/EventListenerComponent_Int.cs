@@ -8,6 +8,6 @@ namespace Framework.Core.Events.Predefined.Listeners
     [AddComponentMenu(BuiltInPath + "Integer")]
     public class EventListenerComponent_Int : EventListenerComponent<int, GameEvent_Int, UnityEvent_Int>
     {
-        
+
     }
 }

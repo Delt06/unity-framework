@@ -14,7 +14,7 @@ namespace Framework.Core.Events.Implementation
             _callback = callback ?? throw new ArgumentNullException(nameof(callback));
             _eventToListen = eventToListen ?? throw new ArgumentNullException(nameof(eventToListen));
         }
-        
+
         public void Enable()
         {
             if (_enabled) return;

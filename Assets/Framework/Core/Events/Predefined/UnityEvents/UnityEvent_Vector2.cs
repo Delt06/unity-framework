@@ -7,6 +7,6 @@ namespace Framework.Core.Events.Predefined.UnityEvents
     [Serializable]
     public sealed class UnityEvent_Vector2 : UnityEvent<Vector2>
     {
-        
+
     }
 }

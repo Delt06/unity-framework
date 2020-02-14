@@ -13,7 +13,7 @@ namespace Framework.Core.Collections.Editor
 
         public void OnEnable()
         {
-            _list = new ReorderableList(serializedObject, 
+            _list = new ReorderableList(serializedObject,
                 serializedObject.FindProperty("Items"),
                 true, true, true, true);
 

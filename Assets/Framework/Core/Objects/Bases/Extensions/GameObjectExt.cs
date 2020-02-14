@@ -6,7 +6,7 @@ namespace Framework.Core.Objects.Bases.Extensions
 {
     public static class GameObjectExt
     {
-        public static bool HasCache([NotNull] this GameObject gameObject, 
+        public static bool HasCache([NotNull] this GameObject gameObject,
             out IComponentCache cache)
         {
             if (gameObject == null) throw new ArgumentNullException(nameof(gameObject));

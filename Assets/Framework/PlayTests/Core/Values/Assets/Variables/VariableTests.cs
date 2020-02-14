@@ -15,9 +15,9 @@ namespace Framework.PlayTests.Core.Values.Assets.Variables
         public void Value_Set_ReturnsNew(int value)
         {
             var variable = ScriptableObject.CreateInstance<Variable_Int>();
-            
+
             variable.Value = value;
-            
+
             Assert.AreEqual(value, variable.Value);
         }
 
@@ -31,10 +31,10 @@ namespace Framework.PlayTests.Core.Values.Assets.Variables
 
             variable.Value = value;
             int valueFromOperator = variable;
-            
+
             Assert.AreEqual(variable.Value, valueFromOperator);
         }
-        
+
         [Test]
         [TestCase(0)]
         [TestCase(-3)]
@@ -48,7 +48,7 @@ namespace Framework.PlayTests.Core.Values.Assets.Variables
                 var result = (int) variable;
             });
         }
-        
+
         [Test]
         [TestCase(0)]
         [TestCase(-3)]
@@ -56,10 +56,10 @@ namespace Framework.PlayTests.Core.Values.Assets.Variables
         public void CloneAs_SameType_ReturnsClone(int value)
         {
             var variable = ScriptableObject.CreateInstance<Variable_Int>();
-            
+
             variable.Value = value;
             var clone = variable.CloneAs<Variable_Int>();
-            
+
             Assert.AreNotSame(variable, clone);
             Assert.AreEqual(variable.Value, clone.Value);
         }
