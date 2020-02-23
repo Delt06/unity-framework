@@ -20,6 +20,11 @@ namespace Framework.EditorTests.Core.Spawning.Pools
         }
 
         public int Count { get; }
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
         public void CacheDependent(IDependentObject obj)
         {
             throw new NotImplementedException();
@@ -47,12 +52,19 @@ namespace Framework.EditorTests.Core.Spawning.Pools
 
         public GameObject GameObject { get; }
         public Transform Transform { get; }
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Name { get; }
 
         public void Destroy()
         {
             Destroyed?.Invoke(this, EventArgs.Empty);
         }
+
+        public bool IsDestroyed { get; }
 
         public event EventHandler Destroyed;
         public bool IsActive { get; private set; }

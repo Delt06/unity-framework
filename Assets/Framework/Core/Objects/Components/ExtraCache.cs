@@ -1,20 +1,21 @@
-using UnityEngine;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Framework.Core.Objects.Components
 {
-    [AddComponentMenu("Extra Cache")]
-    public sealed class ExtraCache : DependentComponent
+    public abstract class ExtraCache : DependentComponent
     {
-        [SerializeField] private Object[] _objects = default;
-
-        protected override void OnInitialized()
+        protected sealed override void OnInitialized()
         {
             base.OnInitialized();
 
-            foreach (var obj in _objects)
+            foreach (var obj in GetObjects())
             {
                 Base.Cache(obj);
             }
         }
+
+        [NotNull]
+        protected abstract IEnumerable<object> GetObjects();
     }
 }

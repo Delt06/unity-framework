@@ -8,6 +8,12 @@ namespace Framework.Core.Objects.Bases
 {
     public sealed class ComponentCache : IComponentCache
     {
+        public void Clear()
+        {
+            _allCached.Clear();
+            _typedComponentCollections.Clear();
+        }
+        
         [NotNull]
         private readonly ICollection<object> _allCached = new HashSet<object>();
 

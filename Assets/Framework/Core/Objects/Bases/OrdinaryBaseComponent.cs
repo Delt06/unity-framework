@@ -2,11 +2,14 @@ namespace Framework.Core.Objects.Bases
 {
     public class OrdinaryBaseComponent : BaseComponent
     {
-        public sealed override void Destroy()
+        private bool _isDestroyed = false;
+
+        public sealed override bool IsDestroyed => _isDestroyed;
+
+        protected sealed override void DestroyWhenNotDestroyed()
         {
+            _isDestroyed = true;
             Destroy(gameObject);
-            
-            OnDestroyed();
         }
     }
 }

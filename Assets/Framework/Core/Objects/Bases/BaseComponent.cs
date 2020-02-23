@@ -10,13 +10,18 @@ namespace Framework.Core.Objects.Bases
     [DisallowMultipleComponent]
     public abstract class BaseComponent : MonoBehaviour, IBaseObject
     {
-        [SerializeField] private UnityEvent _onDestroyed = default;
+        [SerializeField] private UnityEvent _onDestroyed = new UnityEvent();
 
         [NotNull] private readonly IComponentCache _cache = new ComponentCache();
 
         public string Name => name;
 
         public int Count => _cache.Count;
+
+        public void Clear()
+        {
+            _cache.Clear();
+        }
 
         public void CacheDependent(IDependentObject obj)
         {
@@ -36,7 +41,17 @@ namespace Framework.Core.Objects.Bases
 
         public IEnumerable<T> FindMany<T>() => _cache.FindMany<T>();
 
-        public abstract void Destroy();
+        public void Destroy()
+        {
+            if (IsDestroyed) return;
+
+            DestroyWhenNotDestroyed();
+            OnDestroyed();
+        }
+        
+        public abstract bool IsDestroyed { get; }
+
+        protected abstract void DestroyWhenNotDestroyed();
 
         public event EventHandler Destroyed;
 
@@ -57,6 +72,13 @@ namespace Framework.Core.Objects.Bases
         {
             if (Initialized) return;
 
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            _cache.Clear();
+            
             GameObject = gameObject;
             Transform = transform;
 

@@ -5,6 +5,8 @@ namespace Framework.Core.Objects
 {
     public interface IComponentCache : IReadOnlyCollection<object>
     {
+        void Clear();
+        
         void CacheDependent([NotNull] IDependentObject obj);
         void Cache([NotNull] object obj);
 

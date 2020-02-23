@@ -21,6 +21,38 @@ namespace Framework.EditorTests.Core.Objects.Bases
         }
 
         [Test]
+        public void Cache_One_CountIncreases()
+        {
+            _cache.Cache(new object());
+            
+            Assert.That(_cache.Count, Is.EqualTo(1));
+        }
+        
+        [Test]
+        public void Cache_Many_CountIncreases()
+        {
+            const int expectedCount = 5;
+            
+            for (var i = 0; i < expectedCount; i++)
+            {
+                _cache.Cache(new object());
+            }
+
+            Assert.That(_cache.Count, Is.EqualTo(expectedCount));
+        }
+
+        [Test]
+        public void Clear_ContainedSome_EverythingIsCleared()
+        {
+            _cache.Cache(new object());
+            _cache.Cache(new object());
+            
+            _cache.Clear();
+            
+            Assert.That(_cache.Count, Is.EqualTo(0));
+        }
+
+        [Test]
         public void Cache_One_CanBeFound()
         {
             var cachedComponent = new DependentComponentAlone();

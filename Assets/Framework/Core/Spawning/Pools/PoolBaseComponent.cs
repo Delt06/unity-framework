@@ -1,17 +1,21 @@
 using System;
 using Framework.Core.Objects.Bases;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Framework.Core.Spawning.Pools
 {
     public class PoolBaseComponent : BaseComponent, IPoolBase
     {
-        public sealed override void Destroy()
+        [SerializeField] private UnityEvent _onActivated = new UnityEvent();
+        [SerializeField] private UnityEvent _onDeactivated = new UnityEvent();
+        
+        protected sealed override void DestroyWhenNotDestroyed()
         {
-            if (!IsActive) return;
-            
             Deactivate();
-            OnDestroyed();
         }
+
+        public sealed override bool IsDestroyed => !IsActive;
 
         public bool IsActive { get; private set; } = false;
 
@@ -28,7 +32,8 @@ namespace Framework.Core.Spawning.Pools
         public void Deactivate()
         {
             if (!IsActive) return;
-            
+
+            IsActive = false;
             GameObject.SetActive(false);
             OnDeactivated();
         }
@@ -38,11 +43,13 @@ namespace Framework.Core.Spawning.Pools
 
         protected virtual void OnActivated()
         {
+            _onActivated.Invoke();
             Activated?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void OnDeactivated()
         {
+            _onDeactivated.Invoke();
             Deactivated?.Invoke(this, EventArgs.Empty);
         }
     }
