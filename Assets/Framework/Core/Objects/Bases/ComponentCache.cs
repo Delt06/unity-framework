@@ -15,7 +15,7 @@ namespace Framework.Core.Objects.Bases
         }
         
         [NotNull]
-        private readonly ICollection<object> _allCached = new HashSet<object>();
+        private readonly HashSet<object> _allCached = new HashSet<object>();
 
         [NotNull]
         private readonly IDictionary<Type, ICollection<object>> _typedComponentCollections = new Dictionary<Type, ICollection<object>>();
