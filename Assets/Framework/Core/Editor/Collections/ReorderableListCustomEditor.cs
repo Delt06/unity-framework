@@ -1,11 +1,10 @@
-
-
-using UnityEngine;
 #if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEditorInternal;
+using UnityEngine;
 
-namespace Framework.Core.Collections.Editor
+namespace Framework.Core.Editor.Collections
 {
     internal class ReorderableListCustomEditor : UnityEditor.Editor
     {
