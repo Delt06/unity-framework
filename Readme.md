@@ -16,7 +16,7 @@ An asset that can be raised and reacted to by any object inside the scene.
 
 - Define class for EventListenerComponent:
   - Inherit from ```EventListenerComponent<TArgs, TGameEvent, TUnityEvent>``` specifying actual types: your argument type for ```TArgs```, custom GameEvent for ```TGameEvent```, custom UnityEvent for ```TUnityEvent```.
-  - *Optionally*: Mark it via ```[AddComponentMenu(CustomPath + "*ArgsType*")]``` attribute to add it to common component structure.
+  - *Optionally*: Mark it with ```[AddComponentMenu(CustomPath + "*ArgsType*")]``` attribute to add it to common component structure.
 
 ## ```Variable<T>``` and ```Reference<TValue, TVariable>```
 
