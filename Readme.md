@@ -45,4 +45,4 @@ Pool of objects. Instructions to use:
 - Add a ```Pool Component``` to the scene. Set your prefab as pool's prefab. Adjust size if needed.
 - Create a ```PoolReference``` asset. 
 - Add a ```PoolReferenceSetter``` to the scene. Set your pool and pool references.
-- User the created ```PoolReference.Spawn()``` where needed.
+- Use the created ```PoolReference.Spawn()``` where needed.
