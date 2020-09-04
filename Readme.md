@@ -12,7 +12,7 @@ An asset that can be raised and reacted to by any object inside the scene.
 
 - Define class for UnityEvent:
   - Inherit from ```UnityEvent<T>``` specifying actual argument type.
-  - Mark it via ```[Serializable]``` attribute to allow Edtiro serialization.
+  - Mark it via ```[Serializable]``` attribute to allow Edtitor serialization.
 
 - Define class for EventListenerComponent:
   - Inherit from ```EventListenerComponent<TArgs, TGameEvent, TUnityEvent>``` specifying actual types: your argument type for ```TArgs```, custom GameEvent for ```TGameEvent```, custom UnityEvent for ```TUnityEvent```.
